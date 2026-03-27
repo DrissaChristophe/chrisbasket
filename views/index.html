@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ChrisBasket — Chaussures de Basketball</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<style>
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;align-items:center;padding:4rem 5vw;gap:2rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(8rem,18vw,18rem);color:rgba(255,255,255,0.03);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:4px}
+.hero-text{position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(232,88,10,0.15);color:var(--orange);font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:4px;margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:1px;border:1px solid rgba(232,88,10,0.3)}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,6rem);line-height:.95;margin-bottom:1.2rem;letter-spacing:2px}
+.hero h1 span{color:var(--orange)}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero p{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.7;max-width:400px;margin-bottom:2rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--orange)}
+.stat-label{font-size:.78rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:.5px}
+.hero-img{position:relative;z-index:1;display:flex;justify-content:center}
+.hero-frame{width:100%;max-width:500px;aspect-ratio:1;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);overflow:hidden;animation:float 5s ease-in-out infinite;display:flex;align-items:center;justify-content:center}
+.hero-frame img{width:100%;height:100%;object-fit:cover}
+.hero-placeholder{text-align:center;color:rgba(255,255,255,0.2);padding:2rem}
+.hero-placeholder .icon{font-size:5rem;display:block;margin-bottom:1rem}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+#catalog{padding:5rem 5vw;background:var(--dark)}
+
+/* Barre de recherche */
+.search-wrap{max-width:540px;margin:0 auto 2.5rem;position:relative}
+.search-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:.85rem 1.2rem .85rem 3rem;font-family:'DM Sans',sans-serif;font-size:1rem;color:#fff;outline:none;transition:border-color .2s}
+.search-input:focus{border-color:var(--orange)}
+.search-input::placeholder{color:rgba(255,255,255,0.3)}
+.search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none}
+.search-clear{position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:1.1rem;cursor:pointer;display:none}
+.search-clear.visible{display:block}
+
+#why{padding:5rem 5vw;background:var(--black)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+.why-card{background:var(--dark);border-radius:10px;padding:2rem 1.5rem;border:1px solid rgba(255,255,255,0.07);text-align:center;transition:transform .2s,border-color .2s}
+.why-card:hover{transform:translateY(-4px);border-color:var(--orange)}
+.why-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
+.why-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;margin-bottom:.5rem;letter-spacing:1px}
+.why-card p{font-size:.85rem;color:rgba(255,255,255,0.45);line-height:1.6}
+
+@media(max-width:700px){.hero{grid-template-columns:1fr;min-height:auto;padding:3rem 5vw}.hero-img{display:none}.hero-stats{gap:1.2rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Chris<span>Basket</span></a>
+  <ul>
+    <li><a href="#catalog">Collection</a></li>
+    <li><a href="#why">Pourquoi Nous</a></li>
+    <li><a href="#contact" class="nav-cta">Commander</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg">BASKETBALL</div>
+  <div class="hero-text">
+    <div class="hero-badge">🏀 Performance &amp; Style</div>
+    <h1>DOMINEZ<br/>LE <span>TERRAIN</span><br/>AVEC <em>STYLE</em></h1>
+    <p>Des chaussures de basketball haut de gamme pour les joueurs qui refusent de faire des compromis. Performance maximale, confort absolu.</p>
+    <div class="hero-btns">
+      <a href="#catalog" class="btn btn-orange">Voir la Collection →</a>
+      <a href="#contact" class="btn btn-outline">📞 Nous Contacter</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num" id="stat-count">0</div><div class="stat-label">Modèles Disponibles</div></div>
+      <div><div class="stat-num">24H</div><div class="stat-label">Livraison Express</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Qualité Premium</div></div>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="hero-frame" id="hero-frame">
+      <div class="hero-placeholder" id="hero-placeholder">
+        <span class="icon">👟</span>
+        <div>Chargement...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>Performance Sur le Terrain</span><span class="dot"> ✦ </span>
+    <span>Semelles Anti-Dérapantes</span><span class="dot"> ✦ </span>
+    <span>Amorti Supérieur</span><span class="dot"> ✦ </span>
+    <span>Livraison Rapide</span><span class="dot"> ✦ </span>
+    <span>Confort Extrême</span><span class="dot"> ✦ </span>
+    <span>Performance Sur le Terrain</span><span class="dot"> ✦ </span>
+    <span>Semelles Anti-Dérapantes</span><span class="dot"> ✦ </span>
+    <span>Amorti Supérieur</span><span class="dot"> ✦ </span>
+    <span>Livraison Rapide</span><span class="dot"> ✦ </span>
+    <span>Confort Extrême</span><span class="dot"> ✦ </span>
+  </div>
+</div>
+
+<section id="catalog">
+  <div class="section-header">
+    <div class="section-tag">Notre Collection</div>
+    <h2>Choisissez Vos Armes</h2>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="search-input" type="text" placeholder="Rechercher une chaussure..."/>
+    <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+  </div>
+
+  <div class="catalog-grid" id="catalog-grid">
+    <div class="empty-state" style="grid-column:1/-1">
+      <span class="empty-icon">👟</span><p>Chargement...</p>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="section-header">
+    <div class="section-tag">Pourquoi ChrisBasket</div>
+    <h2>L'Avantage ChrisBasket</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span class="why-icon">⚡</span><h3>Performance Maximale</h3><p>Chaque modèle est conçu pour améliorer votre jeu — vitesse, saut, stabilité.</p></div>
+    <div class="why-card"><span class="why-icon">🛡️</span><h3>Protection de la Cheville</h3><p>Nos tiges renforcées protègent vos chevilles lors des changements de direction rapides.</p></div>
+    <div class="why-card"><span class="why-icon">🎯</span><h3>Grip Inégalé</h3><p>Semelles haute adhérence adaptées aux parquets intérieurs et terrains extérieurs.</p></div>
+    <div class="why-card"><span class="why-icon">🚀</span><h3>Livraison en 24H</h3><p>Commandez aujourd'hui, jouez demain. Livraison express disponible via WhatsApp.</p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-tag">Contactez-Nous</div>
+  <h2>PRÊT À JOUER ?</h2>
+  <p class="sub">Écrivez-nous sur WhatsApp ou appelez-nous — on vous aide à trouver la paire parfaite pour votre style de jeu.</p>
+  <div class="contact-btns">
+    <a id="wa-link" href="#" class="btn-whatsapp">💬 WhatsApp</a>
+    <a id="call-link" href="#" class="btn-call">📞 Appeler</a>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2025 <strong>ChrisBasket</strong> — Chaussures de Basketball Premium</span>
+  <a href="/admin/login">⚙ Admin</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/js/boutique.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #E8580A;
+  --orange-dark: #7A2D04;
+  --black: #111110;
+  --dark: #1E1E1C;
+  --mid: #6B6B68;
+  --border: rgba(255,255,255,0.1);
+  --white: #FFFFFF;
+  --accent: #FAC200;
+  --success: #1D9E75;
+  --danger: #E24B4A;
+}
+
+body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+/* NAV */
+nav { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 5vw; background: var(--black); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--white); letter-spacing: 2px; text-decoration: none; }
+.logo span { color: var(--orange); }
+nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+nav ul a { text-decoration: none; font-size: .9rem; font-weight: 500; color: rgba(255,255,255,0.6); transition: color .2s; text-transform: uppercase; letter-spacing: .5px; }
+nav ul a:hover { color: var(--orange); }
+.nav-cta { background: var(--orange) !important; color: #fff !important; padding: .5rem 1.4rem; border-radius: 4px; }
+.nav-cta:hover { background: var(--orange-dark) !important; }
+
+/* BOUTONS */
+.btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.8rem; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: .88rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border: none; text-decoration: none; transition: background .2s, transform .15s, opacity .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-orange { background: var(--orange); color: #fff; }
+.btn-orange:hover { background: var(--orange-dark); }
+.btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { opacity: .85; }
+.btn-sm { padding: .45rem .9rem; font-size: .75rem; }
+
+/* MARQUEE */
+.marquee-bar { background: var(--orange); color: #fff; padding: .7rem 0; overflow: hidden; white-space: nowrap; }
+.marquee-inner { display: inline-block; animation: marquee 22s linear infinite; font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+.marquee-inner span { margin: 0 2rem; }
+.dot { opacity: .5; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* SECTION HEADER */
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-tag { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: .6rem; }
+.section-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--white); letter-spacing: 2px; line-height: 1; }
+
+/* CARDS */
+.catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.shoe-card { background: var(--black); border-radius: 10px; overflow: hidden; transition: transform .25s, box-shadow .25s; border: 1px solid rgba(255,255,255,0.07); position: relative; }
+.shoe-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+.shoe-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--orange); opacity: 0; transition: opacity .25s; }
+.shoe-card:hover::after { opacity: 1; }
+
+/* Carrousel photos */
+.card-carousel { position: relative; overflow: hidden; aspect-ratio: 4/3; background: rgba(255,255,255,0.04); }
+.card-carousel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-size: .8rem; gap: .5rem; }
+.carousel-placeholder .ph-icon { font-size: 3rem; }
+.carousel-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; }
+.carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; transition: background .2s; }
+.carousel-dot.active { background: var(--orange); }
+.carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: .9rem; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; }
+.card-carousel:hover .carousel-arrow { opacity: 1; }
+.carousel-prev { left: 6px; }
+.carousel-next { right: 6px; }
+
+.shoe-card-body { padding: 1.1rem 1.3rem 1.4rem; }
+.shoe-tag { font-size: .7rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: .4rem; }
+.shoe-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--white); margin-bottom: .4rem; letter-spacing: 1px; }
+.shoe-desc { font-size: .83rem; color: rgba(255,255,255,0.45); margin-bottom: .8rem; line-height: 1.55; }
+.shoe-tailles { font-size: .75rem; color: rgba(255,255,255,0.3); margin-bottom: .5rem; }
+.shoe-footer { display: flex; align-items: center; justify-content: space-between; margin-top: .8rem; }
+.shoe-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--accent); letter-spacing: 1px; }
+.stock-badge { font-size: .72rem; color: rgba(255,255,255,0.3); }
+.stock-badge.out { color: var(--danger); }
+.shoe-inquire { background: var(--orange); color: #fff; border: none; padding: .5rem 1.1rem; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 700; cursor: pointer; transition: background .2s; text-decoration: none; text-transform: uppercase; letter-spacing: .5px; display: inline-block; }
+.shoe-inquire:hover { background: var(--orange-dark); }
+
+/* CONTACT */
+#contact { padding: 5rem 5vw; background: var(--orange); text-align: center; position: relative; overflow: hidden; }
+#contact::before { content: 'BASKETBALL'; position: absolute; font-family: 'Bebas Neue', sans-serif; font-size: clamp(6rem,15vw,14rem); color: rgba(0,0,0,0.08); top: 50%; left: 50%; transform: translate(-50%,-50%); white-space: nowrap; pointer-events: none; letter-spacing: 4px; }
+#contact .section-tag { color: rgba(0,0,0,0.5); }
+#contact h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem,5vw,3.5rem); color: var(--black); margin-bottom: .8rem; position: relative; letter-spacing: 2px; }
+#contact p.sub { color: rgba(0,0,0,0.6); font-size: 1rem; margin-bottom: 2.5rem; max-width: 420px; margin-left: auto; margin-right: auto; position: relative; }
+.contact-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-whatsapp { background: #000; color: #fff; padding: .9rem 2rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: .5rem; transition: opacity .2s, transform .15s; }
+.btn-whatsapp:hover { opacity: .85; transform: translateY(-2px); }
+.btn-call { background: transparent; color: #000; padding: .9rem 2rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: 1px; border: 2px solid #000; display: inline-flex; align-items: center; gap: .5rem; transition: all .2s; }
+.btn-call:hover { background: #000; color: #fff; transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--black); color: rgba(255,255,255,0.3); text-align: center; padding: 1.5rem 5vw; font-size: .82rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+footer strong { color: var(--orange); }
+footer a { color: rgba(255,255,255,0.15); text-decoration: none; font-size: .75rem; transition: color .2s; }
+footer a:hover { color: var(--orange); }
+
+/* EMPTY STATE */
+.empty-state { text-align: center; padding: 4rem 2rem; color: rgba(255,255,255,0.25); }
+.empty-state .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--dark); color: #fff; padding: 1rem 1.5rem; border-radius: 8px; font-size: .9rem; font-weight: 500; border-left: 3px solid var(--success); z-index: 9999; opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.error { border-left-color: var(--danger); }
+
+@media (max-width: 700px) { nav ul { display: none; } }

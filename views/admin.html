@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ChrisBasket — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">Chris<span>Basket</span></div>
+    <div class="sidebar-label">Menu</div>
+    <a href="/admin" class="active">👟 Chaussures</a>
+    <a href="/" target="_blank">🏪 Voir la Boutique</a>
+    <div class="sidebar-footer">
+      <a href="/admin/logout">🚪 Déconnexion</a>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-header">
+      <div>
+        <div class="admin-title">Gestion des Chaussures</div>
+        <div class="admin-subtitle">Ajoutez, modifiez ou supprimez les produits</div>
+      </div>
+      <button class="btn btn-orange" onclick="ouvrirModal()">+ Ajouter une Chaussure</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-card-label">Total Produits</div><div class="stat-card-value" id="s-total">0</div></div>
+      <div class="stat-card"><div class="stat-card-label">En Stock</div><div class="stat-card-value" id="s-stock">0</div></div>
+      <div class="stat-card"><div class="stat-card-label">Rupture</div><div class="stat-card-value" id="s-rupture">0</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-header"><div class="table-title">Produits</div></div>
+      <table>
+        <thead>
+          <tr>
+            <th>Photos</th><th>Nom</th><th>Prix</th><th>Stock</th><th>Tailles</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="overlay" onclick="closeOverlay(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-titre">Ajouter une Chaussure</h3>
+      <button class="modal-close" onclick="fermerModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- 3 slots photos -->
+      <div class="form-group full" style="margin-bottom:1rem">
+        <label>Photos (max 3)</label>
+        <div class="photos-upload-grid">
+          <div>
+            <div class="photo-slot" id="slot-0">
+              <input type="file" accept="image/*" onchange="previewSlot(0,this)"/>
+              <div class="photo-slot-placeholder"><span>📸</span>Photo 1</div>
+              <img id="preview-0" alt=""/>
+              <button class="remove-photo" onclick="removeSlot(0,event)">✕</button>
+            </div>
+            <div class="photo-slot-label">Photo principale</div>
+          </div>
+          <div>
+            <div class="photo-slot" id="slot-1">
+              <input type="file" accept="image/*" onchange="previewSlot(1,this)"/>
+              <div class="photo-slot-placeholder"><span>📸</span>Photo 2</div>
+              <img id="preview-1" alt=""/>
+              <button class="remove-photo" onclick="removeSlot(1,event)">✕</button>
+            </div>
+            <div class="photo-slot-label">Photo 2</div>
+          </div>
+          <div>
+            <div class="photo-slot" id="slot-2">
+              <input type="file" accept="image/*" onchange="previewSlot(2,this)"/>
+              <div class="photo-slot-placeholder"><span>📸</span>Photo 3</div>
+              <img id="preview-2" alt=""/>
+              <button class="remove-photo" onclick="removeSlot(2,event)">✕</button>
+            </div>
+            <div class="photo-slot-label">Photo 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Nom *</label>
+          <input type="text" id="f-nom" placeholder="ex: Air Dominator Pro"/>
+        </div>
+        <div class="form-group full">
+          <label>Description</label>
+          <textarea id="f-desc" placeholder="Caractéristiques, matières, style de jeu..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Prix (FCFA) *</label>
+          <input type="number" id="f-prix" placeholder="55000" min="0"/>
+        </div>
+        <div class="form-group">
+          <label>Stock (paires)</label>
+          <input type="number" id="f-stock" placeholder="10" min="0"/>
+        </div>
+        <div class="form-group full">
+          <label>Tailles disponibles</label>
+          <input type="text" id="f-tailles" placeholder="38, 39, 40, 41, 42, 43, 44"/>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" onclick="fermerModal()">Annuler</button>
+      <button class="btn btn-orange btn-sm" id="btn-save" onclick="sauvegarder()">💾 Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/admin.js"></script>
+</body>
+</html>
