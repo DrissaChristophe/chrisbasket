@@ -54,11 +54,10 @@ nav ul a:hover { color: var(--orange); }
 .shoe-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
 .shoe-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--orange); opacity: 0; transition: opacity .25s; }
 .shoe-card:hover::after { opacity: 1; }
-.shoe-card-img { width: 100%; aspect-ratio: 4/3; object-fit: contain; display: block; background: #1a1a18; }
 
 /* Carrousel photos */
 .card-carousel { position: relative; overflow: hidden; aspect-ratio: 4/3; background: rgba(255,255,255,0.04); }
-.card-carousel img { width: 100%; height: 100%; object-fit: contain; display: block; background: #1a1a18; }
+.card-carousel img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .carousel-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-size: .8rem; gap: .5rem; }
 .carousel-placeholder .ph-icon { font-size: 3rem; }
 .carousel-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; }
@@ -109,3 +108,48 @@ footer a:hover { color: var(--orange); }
 .toast.error { border-left-color: var(--danger); }
 
 @media (max-width: 700px) { nav ul { display: none; } }
+
+/* ── Modal détail chaussure ─────────────────────────────── */
+#modal-detail { display: none; position: fixed; inset: 0; z-index: 2000; }
+.detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.detail-modal { background: #1A1A18; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 860px; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+.detail-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.08); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; z-index: 10; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+.detail-close:hover { background: var(--danger); }
+
+/* Partie gauche — photos */
+.detail-left { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border-right: 1px solid rgba(255,255,255,0.07); }
+.detail-main-photo { aspect-ratio: 1; background: #111; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.detail-main-photo img { width: 100%; height: 100%; object-fit: contain; transition: opacity .2s; }
+.detail-no-photo { font-size: 5rem; color: rgba(255,255,255,0.15); }
+.detail-thumbs { display: flex; gap: .6rem; flex-wrap: wrap; }
+.detail-thumb { width: 70px; height: 70px; object-fit: contain; background: #111; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: border-color .2s, opacity .2s; opacity: .6; }
+.detail-thumb:hover { opacity: 1; }
+.detail-thumb.active { border-color: var(--orange); opacity: 1; }
+
+/* Partie droite — infos */
+.detail-right { padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.detail-tag { font-size: .72rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; }
+.detail-nom { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 1px; line-height: 1.1; }
+.detail-prix { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--accent); letter-spacing: 1px; }
+.detail-stock { font-size: .85rem; font-weight: 500; }
+.detail-stock.out { color: var(--danger); }
+.detail-desc { font-size: .9rem; color: rgba(255,255,255,0.55); line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1rem; }
+.modal-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.35); display: block; margin-bottom: .5rem; }
+.tailles-list { display: flex; gap: .4rem; flex-wrap: wrap; }
+.taille-badge { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); padding: .3rem .7rem; border-radius: 4px; font-size: .82rem; font-weight: 500; }
+.detail-actions { display: flex; flex-direction: column; gap: .7rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.07); }
+.detail-btn-wa { background: #25D366; color: #fff; padding: .9rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .9rem; text-align: center; text-transform: uppercase; letter-spacing: 1px; transition: opacity .2s; }
+.detail-btn-wa:hover { opacity: .88; }
+.detail-btn-call { background: transparent; color: #fff; padding: .9rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .9rem; text-align: center; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.2); transition: border-color .2s; }
+.detail-btn-call:hover { border-color: var(--orange); color: var(--orange); }
+.detail-btn-disabled { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.25); padding: .9rem 1.5rem; border-radius: 6px; font-weight: 700; font-size: .9rem; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Hint zoom sur carte */
+.carousel-zoom-hint { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.6); font-size: .7rem; padding: 3px 10px; border-radius: 20px; white-space: nowrap; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.card-carousel:hover .carousel-zoom-hint { opacity: 1; }
+
+@media (max-width: 650px) {
+  .detail-modal { grid-template-columns: 1fr; }
+  .detail-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 1rem; }
+  .detail-right { padding: 1rem; }
+}
