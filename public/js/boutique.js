@@ -1,5 +1,5 @@
 // ── Config ───────────────────────────────────────────────
-const WA_NUMBER = 'XXXXXXXXXXX'; // ← Remplacez par votre numéro
+const WA_NUMBER = '+22673369164'; // ← Remplacez par votre numéro
 let searchTimer = null;
 let modalPhotos = [];
 let modalPhotoIndex = 0;
